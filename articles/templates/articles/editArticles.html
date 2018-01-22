@@ -1,7 +1,14 @@
 {% extends 'articles/base.html' %}
 
 {% block content %}
-
-Edit or delete an article
-
+    {% for article in articles %}
+        
+        <h2>{{ article.title }}</h2>
+        <h5><span class="glyphicon glyphicon-time"></span> Post by {{ article.author }}, {{ article.created_at }}</h5>
+        <a href="#" class="btn btn-info">Edit Article</a>
+        <a href="#" class="btn btn-danger">Delete Article</a>
+        <br><br>
+    {% endfor %}
+   
 {% endblock %}
+

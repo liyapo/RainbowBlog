@@ -2,6 +2,10 @@
 
 {% block content %}
 
-An article
+<h2>{{ articles.title }}</h2>
+<h5><span class="glyphicon glyphicon-time"></span> Post by {{ articles.author }}, {{ articles.created_at }}</h5>
+<p>{{ articles.description }}</p>
+<br><br>
+
 
 {% endblock %}
