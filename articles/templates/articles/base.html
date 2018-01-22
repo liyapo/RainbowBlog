@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+  <title>{% block page_title %} Rainbow Blog{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-sm-12" style="height:80px; color:rgb(252, 242, 151); margin:10px; background-color:powderblue;">
+          <h2>Rainbow Blog  -  welcome to heaven</h2>
+      </div>
+  </div>
+
+  
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Rainbow Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class=""><a href="{% url 'articles:list_articles' %}" style=color:goldenrod>Home</a></li>
+        <li class=""><a href="{% url 'articles:create_articles' %}" style=color:goldenrod>Create Article</a></li>
+        <li class=""><a href="{% url 'articles:edit_articles' %}" style=color:goldenrod>Edit Article</a></li>    
+      </ul><br>
+    </div>
+
+    <div class="col-sm-9">
+        {% block content %}
+       
+     <h2> Home page <\h2> 
+
+      {% endblock %}
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+</html>
