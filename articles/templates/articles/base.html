@@ -12,29 +12,36 @@
 </head>
 <body>
 
+
+
 <div class="container-fluid">
   <div class="row">
       <div class="col-sm-12" style="height:80px; color:rgb(252, 242, 151); margin:10px; background-color:powderblue;">
           <h2>Rainbow Blog  -  welcome to heaven</h2>
       </div>
   </div>
+
+  
   <div class="row content">
     <div class="col-sm-3 sidenav">
       <h4>Rainbow Blog</h4>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="{% url 'articles:list_articles' %}" style=background-color:rgb(255,230,0)>Home</a></li>
-        <li class=""><a href="" style=color:goldenrod>Create Article</a></li>
+        <li class=""><a href="{% url 'articles:list_articles' %}" style=color:goldenrod>Home</a></li>
+        <li class=""><a href="{% url 'articles:create_articles' %}" style=color:goldenrod>Create Article</a></li>
+        <li class=""><a href="{% url 'articles:edit_articles' %}" style=color:goldenrod>Edit Article</a></li>    
       </ul><br>
     </div>
 
     <div class="col-sm-9">
-       {% block content %}
+        {% block content %}
+       
+     <h2> Home page <\h2> 
 
-      
       {% endblock %}
     </div>
   </div>
 </div>
+
 
 
 </body>

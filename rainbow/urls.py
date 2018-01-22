@@ -19,6 +19,8 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^index/', include('articles.urls', namespace = 'articles'), name = 'articles'),
-    url(r'^articles/', include('articles.urls', namespace = 'articles'), name = 'articles'),
+    url(r'^articles/', include('articles.urls', namespace = "articles"), name = "list_articles"),
+    url(r'^create/', include('articles.urls', namespace = "articles"), name = "create_articles"),
+    url(r'^edit/', include('articles.urls', namespace = "articles"), name = "edit_articles"),
+    url(r'^detail/(?P<pk>\d+)', include('articles.urls', namespace = "articles"), name = "detail_articles"),
 ]
