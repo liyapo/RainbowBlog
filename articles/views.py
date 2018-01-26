@@ -54,4 +54,9 @@ def edit_this_article(request, pk):
         form = ArticlesForm(instance=thisarticle)
     return render(request, 'articles/editThisArticle.html', {'form': form})
 
+def delete_article(request, pk):
+    Articles.objects.filter(id=pk).delete()
+    context ={}
+    return render(request,'home.html',context)
+
 
