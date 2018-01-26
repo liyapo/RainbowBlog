@@ -6,6 +6,7 @@
 <h5><span class="glyphicon glyphicon-time"></span> Post by {{ articles.author }}, {{ articles.created_at }}</h5>
 <p>{{ articles.description }}</p>
 <a href="{% url 'articles:edit_this_article' pk=articles.pk %}" class="btn btn-info">Edit</a>
+<a href="{% url 'articles:delete_article' pk=articles.pk %}" class="btn btn-danger">Delete</a>
 <br><br>
 
 

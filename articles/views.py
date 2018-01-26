@@ -56,7 +56,8 @@ def edit_this_article(request, pk):
 
 def delete_article(request, pk):
     Articles.objects.filter(id=pk).delete()
-    context ={}
-    return render(request,'home.html',context)
+    list_articles = Articles.objects.all()
+    context = {'articles': list_articles}
+    return render(request,'articles/editArticles.html',context)
 
 
