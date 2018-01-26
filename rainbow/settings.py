@@ -59,7 +59,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS':     [os.path.join(BASE_DIR, 'rainbow/templates'),
-                     os.path.join(BASE_DIR, 'static'),],
+                    ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,5 +125,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+STATIC_ROOT = "/Users/LIYA/AF_python/DjangoBlog/rainbow/static"
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'rainbow/static'),
+    os.path.join(BASE_DIR, 'articles/static'),]
+ 
 
