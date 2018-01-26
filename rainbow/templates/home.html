@@ -1,19 +1,21 @@
+{% load staticfiles %}  
+
+
 <!DOCTYPE html>
 
 
-<style type="text/css">body, a:hover {cursor: url(http://cur.cursors-4u.net/nature/nat-10/nat922.ani), url(https://userstyles.org/style_screenshots/78316_after.png?r=1478952354), progress !important;}</style><a href="http://www.cursors-4u.com/cursor/2011/04/19/cute-blinking-unicorn.html" target="_blank" title="Cute Blinking Unicorn"><img src="http://cur.cursors-4u.net/cursor.png" border="0" alt="Cute Blinking Unicorn" style="position:absolute; top: 0px; right: 0px;" /></a>
-
 <html lang="en">
 <head>
+  <style type="text/css">body, a:hover {cursor: url(http://cur.cursors-4u.net/nature/nat-10/nat922.ani), url(https://userstyles.org/style_screenshots/78316_after.png?r=1478952354), progress !important;}</style><a href="http://www.cursors-4u.com/cursor/2011/04/19/cute-blinking-unicorn.html" target="_blank" title="Cute Blinking Unicorn"><img src="http://cur.cursors-4u.net/cursor.png" border="0" alt="Cute Blinking Unicorn" style="position:absolute; top: 0px; right: 0px;" /></a>
   <title>{% block page_title %} Rainbow Blog {% endblock %}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-{% load staticfiles %}  
 
 <body>
 
@@ -41,7 +43,7 @@
     
     </br>
      
-    <h2><a style=color:tomato> Welcome to happy place! </h2>
+    <h2 style=color:tomato> Welcome to happy place! </h2>
 
     </div>
   </div>
