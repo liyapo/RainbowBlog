@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.generic import UpdateView, CreateView, DeleteView
-from .forms import ArticlesForm 
+from .forms import ArticlesForm, UserForm
 from .models import Articles
 import datetime
+
 
 # Create your views here.
 def list_articles(request):
@@ -59,5 +60,19 @@ def delete_article(request, pk):
     list_articles = Articles.objects.all()
     context = {'articles': list_articles}
     return render(request,'articles/editArticles.html',context)
+
+def sign_up(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            new_user = form.save(commit=False)
+            #articles.published_date = datetime.datetime.now()
+            new_user.save()
+            context = {}
+            return render(request, "/", context)
+    else:
+        form = UserForm()
+    return render(request, 'articles/sign_up.html', {'form': form})
+
 
 
