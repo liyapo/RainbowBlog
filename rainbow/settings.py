@@ -132,3 +132,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'articles/static'),]
  
 
+LOGIN_REDIRECT_URL = '/backoffice/'
+LOGIN_URL = '/'
+TEMPLATE_DIRS = (
+    BASE_DIR + '/templates/',
+)
