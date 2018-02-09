@@ -4,6 +4,8 @@ from .forms import ArticlesForm, UserForm
 from .models import Articles
 import datetime
 
+from django.contrib.auth import authenticate, login
+
 
 # Create your views here.
 def list_articles(request):
@@ -69,10 +71,23 @@ def sign_up(request):
             #articles.published_date = datetime.datetime.now()
             new_user.save()
             context = {}
-            return render(request, "/", context)
+            return render(request, "home.html", context)
     else:
         form = UserForm()
     return render(request, 'articles/sign_up.html', {'form': form})
+
+
+
+def login(request):
+    username = request.POST.get('username', False)
+    password = request.POST.get('password', False)
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            return render(request, "home.html", context)
+    else:
+        return render(request, 'articles/login.html', {})
 
 
 
