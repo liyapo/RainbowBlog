@@ -130,5 +130,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'rainbow/static'),
     os.path.join(BASE_DIR, 'articles/static'),]
+
+LOGIN_REDIRECT_URL = '/'
  
 

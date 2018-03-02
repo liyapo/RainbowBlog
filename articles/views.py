@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate
 from django.views.generic import UpdateView, CreateView, DeleteView
 from .forms import ArticlesForm, UserForm
 from .models import Articles
 import datetime
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -62,17 +64,49 @@ def delete_article(request, pk):
     return render(request,'articles/editArticles.html',context)
 
 def sign_up(request):
+    # A boolean value to check if the signup is successful
+    success = False
+
+    # If it is a HTTP POST, we process form data
     if request.method == "POST":
+        # Get the info from the form
         form = UserForm(request.POST)
+        # If form is valid then we save new user
         if form.is_valid():
-            new_user = form.save(commit=False)
+            user = form.save(commit=False)
+            # We hash the password and update the user object
+            user.set_password(user.password)
             #articles.published_date = datetime.datetime.now()
-            new_user.save()
-            context = {}
-            return render(request, "/", context)
+            user.save()
+            success = True
+            return render(request, 'articles/signUp.html', {'success': success})
     else:
         form = UserForm()
-    return render(request, 'articles/sign_up.html', {'form': form})
+    return render(request, 'articles/signUp.html', {'form': form, 'success': success})
 
+def login_user(request):
+    # logged is to check if the user is logged or not
+    logged = False
+    form = UserForm()
+    # If the request is a HTTP POST, get the info
+    if request.method == 'POST': 
+        # Gather the username, password
+        username = request.POST['username']
+        password = request.POST['password']
+        # Django authentication, is combination is valid the user object is returned 
+        user = authenticate(username=username, password=password)
+        # If we have user object, we log him in
+        # If none then we return the mistake
+        if user:
+            login(request, user)
+            logged = True
+            return render(request, 'articles/login.html', {'logged':logged})
+        else: 
+            # Bad login details
+            print("Invalid login details: {0} {1}".format(username, password))
+            return HttpResponse("Invalid login details supplied")
+    # The request is not HTTP POST
+    else:
+        return render(request, 'articles/login.html', {'form': form, 'logged':logged})
 
-
+ 
