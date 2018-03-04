@@ -22,7 +22,7 @@
 <div class="container-fluid">
   <div class="row">
       <div class="col-sm-12" style="height:80px; color:rgb(252, 242, 151); margin:10px; background-color:rgb(12, 247, 188);">
-          <a href="/" style="text-decoration:none; color:white;"> <h2> Rainbow Blog  -  Welcome to heaven </h2> </a>
+          <a href="{% url 'articles:list_articles' %}" style="text-decoration:none; color:white;"> <h2> Rainbow Blog  -  Welcome to heaven </h2> </a>
       </div>
   </div>
 
@@ -30,7 +30,7 @@
 
 <div>
   <a href= "{% url 'articles:sign_up_article' %}" style="float: right;" class="btn btn-info">Sign up</a>
-  <a href="{% url 'articles:login' %}" style="float: right;" class="btn btn-info">Log in</a> 
+  <a href="{% url 'articles:login_this_user' %}" style="float: right;" class="btn btn-info">Log in</a> 
   </div>
 </div>
 

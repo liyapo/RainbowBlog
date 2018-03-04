@@ -9,6 +9,6 @@ urlpatterns = [
     url(r'^edit/(?P<pk>\d+)/$', views.edit_this_article, name = 'edit_this_article'),
     url(r'^delete/(?P<pk>\d+)/$', views.delete_article, name = 'delete_article'),
     url(r'^sign_up/$', views.sign_up, name = 'sign_up_article'),
-    url(r'^login/$', views.login_user, name='login_user'),
+    url(r'^login/$', views.login_user, name='login_this_user'),
     #url(r'^logout/$', auth_views.logout, name='logout'),
 ]

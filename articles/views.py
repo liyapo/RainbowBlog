@@ -80,16 +80,17 @@ def sign_up(request):
             user.save()
             success = True
 
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
+            #username = form.cleaned_data.get('username')
+            #password = form.cleaned_data.get('password')
 
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            
+            #user = authenticate(username=username, password=password)
+            #login(request, user)
+
             return render(request, 'articles/signUp.html', {'success': success})
     else:
         form = UserForm()
     return render(request, 'articles/signUp.html', {'form': form, 'success': success})
+
 
 def login_user(request):
     # logged is to check if the user is logged or not
@@ -105,7 +106,7 @@ def login_user(request):
         # If we have user object, we log him in
         # If none then we return the mistake
         if user:
-            login(request, user)
+            #login(request, user)
             logged = True
             return render(request, 'articles/login.html', {'logged':logged})
         else: 
