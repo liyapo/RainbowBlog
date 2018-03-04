@@ -79,6 +79,13 @@ def sign_up(request):
             #articles.published_date = datetime.datetime.now()
             user.save()
             success = True
+
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            
             return render(request, 'articles/signUp.html', {'success': success})
     else:
         form = UserForm()
