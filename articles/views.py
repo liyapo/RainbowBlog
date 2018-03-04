@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.views.generic import UpdateView, CreateView, DeleteView
-from .forms import ArticlesForm, UserForm
+from .forms import ArticlesForm, UserSignUpForm, UserLoginForm
 from .models import Articles
 import datetime
 from django.http import HttpResponse
-
 
 # Create your views here.
 def list_articles(request):
@@ -70,7 +69,7 @@ def sign_up(request):
     # If it is a HTTP POST, we process form data
     if request.method == "POST":
         # Get the info from the form
-        form = UserForm(request.POST)
+        form = UserSignUpForm(request.POST)
         # If form is valid then we save new user
         if form.is_valid():
             user = form.save(commit=False)
@@ -88,14 +87,13 @@ def sign_up(request):
 
             return render(request, 'articles/signUp.html', {'success': success})
     else:
-        form = UserForm()
+        form = UserSignUpForm()
     return render(request, 'articles/signUp.html', {'form': form, 'success': success})
 
 
 def login_user(request):
-    # logged is to check if the user is logged or not
-    logged = False
-    form = UserForm()
+
+    form = UserLoginForm()
     # If the request is a HTTP POST, get the info
     if request.method == 'POST': 
         # Gather the username, password
@@ -106,15 +104,20 @@ def login_user(request):
         # If we have user object, we log him in
         # If none then we return the mistake
         if user:
-            #login(request, user)
-            logged = True
-            return render(request, 'articles/login.html', {'logged':logged})
-        else: 
+            login(request, user)
+            return render(request, 'rainbow/home.html')
+        #else: 
             # Bad login details
-            print("Invalid login details: {0} {1}".format(username, password))
-            return HttpResponse("Invalid login details supplied")
+        #    print("Invalid login details: {0} {1}".format(username, password))
+        #    logged = False
+        #    return HttpResponse("Invalid login details supplied")
     # The request is not HTTP POST
     else:
-        return render(request, 'articles/login.html', {'form': form, 'logged':logged})
+        return render(request, 'articles/login.html', {'form': form})
+
+
+def logout_user(request):
+    logout(request)
+    return render(request, 'rainbow/home.html')
 
  

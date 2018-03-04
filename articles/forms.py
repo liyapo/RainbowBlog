@@ -8,9 +8,19 @@ class ArticlesForm(forms.ModelForm):
         model = Articles
         fields = ('title', 'author', 'description',)
 
+class UserSignUpForm(forms.ModelForm):
+    #password = forms.CharField(widget = forms.PasswordInput())
+
+	class Meta:
+		model = User
+		fields = ('username', 'password', 'email')
+
+		help_texts = {
+            'username': None,
+        }
 
 
-class UserForm(forms.ModelForm):
+class UserLoginForm(forms.ModelForm):
     #password = forms.CharField(widget = forms.PasswordInput())
 
 	class Meta:
