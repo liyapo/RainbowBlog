@@ -1,11 +1,14 @@
 {% extends 'articles/base.html' %}
+{% load staticfiles %}
+
+
+{% block page_style %}<link rel="stylesheet" href="{% static 'css/styledetail.css' %}"> {% endblock %}
 
 {% block content %}
-
-<h2>{{ articles.title }}</h2>
-<h5><span class="glyphicon glyphicon-time"></span> Post by {{ articles.author }}, {{ articles.created_at }}</h5>
-<p>{{ articles.description }}</p>
-
+<h3 style=color:green>{{ articles.title }}</h3>
+<h5 style=color:coral><span class="glyphicon glyphicon-time"></span> Post by {{ articles.author }}, {{ articles.created_at }}</h5>
+<p style="margin-right:250px; text-align:justify">{{ articles.description }}</p>
+{% endblock %}
 
 {% block auth %}
 <a href= "{% url 'articles:sign_up_user' %}" style="float: right;" class="btn btn-info">Sign up</a>
@@ -17,9 +20,11 @@
 {% endblock %}
 
 {% block menu %}
-  <ul class="nav nav-pills nav-stacked">
+<h4>
+  <ul class="nav nav-pills nav-stacked" style="margin-left:10px; margin-right:100px">
       <li class="active"><a href="{% url 'articles:list_articles' %}" style="background-color:sandybrown; color:white;">Articles</a></li>
       <li class=""><a href="{% url 'articles:create_articles' %}" style=color:purple>Create Article</a></li>
       <li class=""><a href="{% url 'articles:edit_articles' %}" style=color:purple>Edit Article</a></li>    
-      </ul>
+  </ul>
+</h4>
 {% endblock %}

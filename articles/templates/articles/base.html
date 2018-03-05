@@ -2,28 +2,25 @@
 
 <!DOCTYPE html>
 
-
-
 <html lang="en">
 <head>
   <style type="text/css">body, a:hover {cursor: url(http://cur.cursors-4u.net/nature/nat-10/nat922.ani), url(https://userstyles.org/style_screenshots/78316_after.png?r=1478952354), progress !important;}</style><a href="http://www.cursors-4u.com/cursor/2011/04/19/cute-blinking-unicorn.html" target="_blank" title="Cute Blinking Unicorn"><img src="http://cur.cursors-4u.net/cursor.png" border="0" alt="Cute Blinking Unicorn" style="position:absolute; top: 0px; right: 0px;" /></a>
-    
   <title>{% block page_title %} Rainbow Blog {% endblock %}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block page_style %}<link rel="stylesheet" href="{% static 'css/style.css' %}">{% endblock %}
 </head>
+
+
 <body>
-
-
 <div class="container-fluid">
   <div class="row">
-      <div class="col-sm-12" style="height:80px; color:rgb(252, 242, 151); margin:10px; background-color:rgb(12, 247, 188);">
-          <a href="\" style="text-decoration:none; color:white;"> <h2> Rainbow Blog  -  Welcome to heaven </h2> </a>
-      </div>
+      <div class="col-sm-12" style="height:80px; color:rgb(252, 242, 151); margin:10px; background-color:springgreen">
+        <a href="\" style="background-color:tomato; color:white;"> <h2> Rainbow Blog  -  Welcome to heaven </h2> </a>
+      </div>  
   </div>
 
 

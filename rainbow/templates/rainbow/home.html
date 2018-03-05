@@ -3,13 +3,13 @@
       
 {% block content %}
 {% if user.is_authenticated %}
-<h2 style=color:deeppink> Hello, unicorn <a style=color:blueviolet> {{ user.username }}! </a> <br></br>
+<h3 style=color:tomato> Hello, unicorn <t style=color:teal> {{ user.username }}! </t> <br></br>
 welcome to a happy place!
-</h2>
+</h3>
 {% else %}
-<h2 style=color:deeppink> Dear unicorn, <br></br> 
-welcome to a happy place! </h2> <br></br> 
-<h4 style=color:blueviolet> Oopsy, you are not logged in </h4>
+<h3 style=color:tomato> Dear unicorn, <br></br> 
+welcome to a happy place! </h3> <br></br> 
+<h4 style=color:teal> Oopsy, you are not logged in </h4>
 {% endif %}
 {% endblock %}
 
@@ -24,9 +24,11 @@ welcome to a happy place! </h2> <br></br>
 {% endblock %}
 
 {% block menu %}
-<ul class="nav nav-pills nav-stacked">
+<h4>
+<ul class="nav nav-pills nav-stacked" style="margin-left:10px; margin-right:100px">
   <li class=""><a href="{% url 'articles:list_articles' %}" style= color:purple >Articles</a></li>
   <li class=""><a href="{% url 'articles:create_articles' %}" style= color:purple>Create Article</a></li>
   <li class=""><a href="{% url 'articles:edit_articles' %}"style= color:purple>Edit Article</a></li>    
 </ul>
+</h4>
 {% endblock %}

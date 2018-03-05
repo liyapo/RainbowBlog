@@ -1,3 +1,5 @@
 body {
-  background-image:url('../images/unicorn.jpg')
+  background-image: url('../images/unicorn.jpg');
+  background-repeat: no-repeat;
+  background-size: auto;
   }

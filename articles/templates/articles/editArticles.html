@@ -1,13 +1,14 @@
 {% extends 'articles/base.html' %}
 
 {% block content %}
-    {% for article in articles %}
-        
-        <h2>{{ article.title }}</h2>
-        <h5><span class="glyphicon glyphicon-time"></span> Post by {{ article.author }}, {{ article.created_at }}</h5>
-        <a href="{% url 'articles:edit_this_article' pk=article.pk %}" class="btn btn-info">Edit</a>
+<h3 style=color:purple> Edit or delete your article here ! <br></br></h3>
+{% if user.is_authenticated%}
+    {% for article in articles %}        
+        <h2 style=color:green>{{ article.title }}</h2>
+        <h5 style=color:coral><span class="glyphicon glyphicon-time"></span> Post by {{ article.author }}, {{ article.created_at }}</h5>
+        <a href="{% url 'articles:edit_this_article' pk=article.pk %}" style="background-color:teal; border:none; color:white;" class="btn btn-info">Edit</a>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{article.title}}">Delete</button>
+<button type="button" style="background-color:tomato; border:none; color:white;" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{article.title}}">Delete</button>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal{{article.title}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -28,6 +29,11 @@
 <br><br>
     {% endfor %}
 
+{% else %}
+    <h4 style=color:crimson> To edit or delete an article, <br></br> 
+        please, <a style=color:coral href="{% url 'articles:login_this_user' %}"> log in </a> ! </h4>
+{% endif %}
+
 {% endblock %}
 
 {% block auth %}
@@ -40,9 +46,12 @@
 {% endblock %}
 
 {% block menu %}
-	<ul class="nav nav-pills nav-stacked">
+<h4>
+  <ul class="nav nav-pills nav-stacked" style="margin-left:10px; margin-right:100px">
         <li class=""><a href="{% url 'articles:list_articles' %}" style=color:purple>Articles</a></li>
         <li class=""><a href="{% url 'articles:create_articles' %}" style=color:purple>Create Article</a></li>
-        <li class="active"><a href="{% url 'articles:edit_articles' %}" style="background-color:yellowgreen; color:white;">Edit Article</a></li>    
-      </ul>
+        <li class="active"><a href="{% url 'articles:edit_articles' %}" style="background-color:yellowgreen; background-size: 100px 100px; color:white;">Edit Article</a></li>    
+  </ul>
+</h4>
 {% endblock %}
+
