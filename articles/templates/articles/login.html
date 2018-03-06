@@ -5,10 +5,18 @@
 {% block content %}  
   <h3> Please log in here </h3>
   <br></br>
-  <form method="POST" class="post-form">{% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" style="background-color:coral; color:white;" class="save btn btn-default"> log in </button>
-  </form>
+  {% if exsist %}
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="background-color:coral; color:white;" class="save btn btn-default"> log in </button>
+    </form>
+  {% else %}
+    <h5> The username or password are incorrect<br></br></h5>
+    <form method="POST" class="post-form">{% csrf_token %}
+       {{ form.as_p }}
+       <button type="submit" style="background-color:coral; color:white;" class="save btn btn-default"> log in </button>
+    </form>
+  {% endif %}
 {% endblock %}
 
 {% block auth %}

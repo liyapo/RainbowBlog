@@ -6,14 +6,20 @@ class ArticlesForm(forms.ModelForm):
 
     class Meta:
         model = Articles
-        fields = ('title', 'author', 'description',)
+        fields = ('title', 'author', 'description')
+
+class ArticlesUserForm(forms.ModelForm):
+
+    class Meta:
+        model = Articles
+        fields = ('title', 'description')
 
 class UserSignUpForm(forms.ModelForm):
-    #password = forms.CharField(widget = forms.PasswordInput())
-
+    
 	class Meta:
 		model = User
 		fields = ('username', 'password', 'email')
+        #password = forms.CharField(widget = forms.PasswordInput())
 
 		help_texts = {
             'username': None,
@@ -21,11 +27,10 @@ class UserSignUpForm(forms.ModelForm):
 
 
 class UserLoginForm(forms.ModelForm):
-    #password = forms.CharField(widget = forms.PasswordInput())
-
 	class Meta:
 		model = User
 		fields = ('username', 'password')
+        #password = forms.CharField(widget = forms.PasswordInput())
 
 		help_texts = {
             'username': None,

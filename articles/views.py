@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.views.generic import UpdateView, CreateView, DeleteView
-from .forms import ArticlesForm, UserSignUpForm, UserLoginForm
+from .forms import ArticlesForm, ArticlesUserForm, UserSignUpForm, UserLoginForm
 from .models import Articles
 import datetime
 from django.http import HttpResponse
@@ -17,24 +17,27 @@ def detail_articles(request, pk):
     context = {'articles': detail_articles}
     return render(request, 'articles/detailArticles.html', context)
 
+ 
 def create_articles(request):
    
     if request.method == "POST":
-        form = ArticlesForm(request.POST)
+        form = ArticlesUserForm(request.POST)
         if form.is_valid():
             articles = form.save(commit=False)
-            articles.published_date = datetime.datetime.now()
+            articles.published_at = datetime.datetime.now()
+            articles.author = request.user
             articles.save()
 
             detail_articles = Articles.objects.get(pk=articles.pk)
             context = {'articles': detail_articles}
             return render(request, 'articles/detailArticles.html', context)
     else:
-        form = ArticlesForm()
+        form = ArticlesUserForm()
     return render(request, 'articles/createArticles.html', {'form': form})
 
 
 def edit_articles(request):
+    author = False
     list_articles = Articles.objects.all()
     context = {'articles': list_articles}
     return render(request, 'articles/editArticles.html', context)
@@ -72,11 +75,15 @@ def sign_up(request):
         form = UserSignUpForm(request.POST)
         # If form is valid then we save new user
         if form.is_valid():
-            user = form.save(commit=False)
+            new_user = form.save(commit=False)
             # We hash the password and update the user object
-            user.set_password(user.password)
+            password = new_user.set_password(new_user.password)
+            
             #articles.published_date = datetime.datetime.now()
-            user.save()
+            new_user.save()
+
+            #password = new_user.set_password(new_user.password)
+            #username = new_user.get_username()
             success = True
 
             username = form.cleaned_data.get('username')
@@ -94,6 +101,7 @@ def sign_up(request):
 def login_user(request):
 
     form = UserLoginForm()
+    exsist = True
     # If the request is a HTTP POST, get the info
     if request.method == 'POST': 
         # Gather the username, password
@@ -103,17 +111,16 @@ def login_user(request):
         user = authenticate(username=username, password=password)
         # If we have user object, we log him in
         # If none then we return the mistake
-        if user:
+        if user:  
+            exsist = True
             login(request, user)
-            return render(request, 'rainbow/home.html')
-        #else: 
-            # Bad login details
-        #    print("Invalid login details: {0} {1}".format(username, password))
-        #    logged = False
-        #    return HttpResponse("Invalid login details supplied")
+            return render(request, 'rainbow/home.html')  
+        else: 
+            exsist = False
+            return render(request, 'articles/login.html', {'form': form, 'exsist':exsist})
     # The request is not HTTP POST
     else:
-        return render(request, 'articles/login.html', {'form': form})
+        return render(request, 'articles/login.html', {'form': form, 'exsist':exsist})
 
 
 def logout_user(request):
