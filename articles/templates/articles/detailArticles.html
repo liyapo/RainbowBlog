@@ -4,11 +4,7 @@
 
 {% block page_style %}<link rel="stylesheet" href="{% static 'css/styledetail.css' %}"> {% endblock %}
 
-{% block content %}
-<h3 style=color:green>{{ articles.title }}</h3>
-<h5 style=color:coral><span class="glyphicon glyphicon-time"></span> Post by {{ articles.author }}, {{ articles.created_at }}</h5>
-<p style="margin-right:250px; text-align:justify">{{ articles.description }}</p>
-{% endblock %}
+{% endblock content %}
 
 {% block auth %}
 <a href= "{% url 'articles:sign_up_user' %}" style="float: right;" class="btn btn-info">Sign up</a>
@@ -17,7 +13,7 @@
 {% else %}
 <a href="{% url 'articles:login_this_user' %}" style="float: right;" class="btn btn-info">Log in</a> 
 {% endif %}  
-{% endblock %}
+{% endblock auth %}
 
 {% block menu %}
 <h4>
@@ -25,6 +21,5 @@
       <li class="active"><a href="{% url 'articles:list_articles' %}" style="background-color:sandybrown; color:white;">Articles</a></li>
       <li class=""><a href="{% url 'articles:create_articles' %}" style=color:purple>Create Article</a></li>
       <li class=""><a href="{% url 'articles:edit_articles' %}" style=color:purple>Edit Article</a></li>    
-  </ul>
-</h4>
-{% endblock %}
+      </ul>
+{% endblock menu %}
