@@ -10,7 +10,7 @@
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
 
-{% endblock %}
+{% endblock content %}
 
 {% block auth %}
 <a href= "{% url 'articles:sign_up_user' %}" style="float: right;" class="btn btn-info">Sign up</a>
@@ -19,7 +19,7 @@
 {% else %}
 <a href="{% url 'articles:login_this_user' %}" style="float: right;" class="btn btn-info">Log in</a> 
 {% endif %}  
-{% endblock %}
+{% endblock auth %}
 
 {% block menu %}
 	<ul class="nav nav-pills nav-stacked">
@@ -27,5 +27,5 @@
         <li class=""><a href="{% url 'articles:create_articles' %}" style= color:purple>Create Article</a></li>
         <li class="active"><a href="{% url 'articles:edit_articles' %}" style="background-color:yellowgreen; color:white;">Edit Article</a></li>    
       </ul>
-{% endblock %}
+{% endblock menu %}
 

@@ -5,6 +5,7 @@ from .forms import ArticlesForm, UserSignUpForm, UserLoginForm
 from .models import Articles
 import datetime
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def list_articles(request):
@@ -17,6 +18,7 @@ def detail_articles(request, pk):
     context = {'articles': detail_articles}
     return render(request, 'articles/detailArticles.html', context)
 
+@login_required(redirect_field_name='login_this_user')
 def create_articles(request):
    
     if request.method == "POST":
@@ -33,13 +35,13 @@ def create_articles(request):
         form = ArticlesForm()
     return render(request, 'articles/createArticles.html', {'form': form})
 
-
+@login_required(redirect_field_name='login_this_user')
 def edit_articles(request):
     list_articles = Articles.objects.all()
     context = {'articles': list_articles}
     return render(request, 'articles/editArticles.html', context)
 
-    
+   
 def edit_this_article(request, pk):
     thisarticle = Articles.objects.get(pk=pk)
     if request.method == "POST":
@@ -55,6 +57,7 @@ def edit_this_article(request, pk):
     else:
         form = ArticlesForm(instance=thisarticle)
     return render(request, 'articles/editThisArticle.html', {'form': form})
+
 
 def delete_article(request, pk):
     Articles.objects.filter(id=pk).delete()
