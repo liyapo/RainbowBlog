@@ -80,12 +80,8 @@ def sign_up(request):
             new_user = form.save(commit=False)
             # We hash the password and update the user object
             password = new_user.set_password(new_user.password)
-            
-            #articles.published_date = datetime.datetime.now()
-            new_user.save()
 
-            #password = new_user.set_password(new_user.password)
-            #username = new_user.get_username()
+            new_user.save()
             success = True
 
             username = form.cleaned_data.get('username')

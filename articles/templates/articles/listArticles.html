@@ -5,7 +5,7 @@
   {% for article in articles %}
     <h3><a style=color:green href="{% url 'articles:detail_articles' article.pk %}">{{ article.title }}</a></h3>
     <h5 style=color:coral><span class="glyphicon glyphicon-time"></span> Post by {{ article.author }}, {{ article.created_at }}</h5>
-    <p>{{ article.description|truncatechars:60}}</p>
+    <p>{{ article.description|truncatechars:60 |linebreaksbr}}</p>
     <br><br>
   {% endfor %}
 {% endblock %}

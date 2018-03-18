@@ -10,7 +10,7 @@
 
 <h2 style=color:green>{{ articles.title }}</h2>
 <h5 style=color:coral><span class="glyphicon glyphicon-time"></span> Post by {{ articles.author }}, {{ articles.created_at }}</h5>
-<p>{{ articles.description }}</p>
+<p align="justify" size="100 px">{{ articles.description|linebreaksbr }}</p>
 
 {% endblock content %}
 
