@@ -3,22 +3,17 @@
 {% block content %}
 <h3 style=color:purple> Create an article! </h3>  
 <br></br>
-{% if user.is_authenticated %}
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit" style="background-color:coral; color:white;" class="save btn btn-default">Save</button>
     </form>
-{% else %}
-    <h4 style=color:crimson> To create an amazing article, <br></br> 
-        please, <a style=color:coral href="{% url 'articles:login_this_user' %}"> log in </a> ! </h4>
-{% endif %}
 {% endblock %}
 
 {% block auth %}
-<a href= "{% url 'articles:sign_up_user' %}" style="float: right;" class="btn btn-info">Sign up</a>
 {% if user.is_authenticated %}
 <a href="{% url 'articles:logout_this_user' %}" style="float: right;" class="btn btn-info">Log out</a> 
 {% else %}
+<a href= "{% url 'articles:sign_up_user' %}" style="float: right;" class="btn btn-info">Sign up</a>
 <a href="{% url 'articles:login_this_user' %}" style="float: right;" class="btn btn-info">Log in</a> 
 {% endif %}  
 {% endblock %}

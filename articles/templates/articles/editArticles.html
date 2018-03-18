@@ -2,7 +2,7 @@
 
 {% block content %}
 <h3 style=color:purple> Edit or delete your article here ! <br></br></h3>
-{% if user.is_authenticated %}
+
   {% for article in articles %}        
     <h2 style=color:green>{{ article.title }}</h2>
     <h5 style=color:coral><span class="glyphicon glyphicon-time"></span> Post by {{ article.author }}, {{ article.created_at }}</h5>
@@ -10,10 +10,10 @@
     {% if article.author == user.username or user.is_superuser %}
       <a href="{% url 'articles:edit_this_article' pk=article.pk %}" class="btn btn-info" style="background-color:teal; border:none; color:white;" >Edit</a>
       <!-- Button trigger modal -->
-      <button type="button" style="background-color:tomato; border:none; color:white;" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{article.title}}">Delete</button>
+      <button type="button" style="background-color:tomato; border:none; color:white;" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{article.pk}}">Delete</button>
 
       <!-- Modal -->
-      <div class="modal fade" id="myModal{{article.title}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="myModal{{article.pk}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -28,28 +28,21 @@
           </div>
         </div>
       </div>
-      <br><br>
     {% else %}
-      <button type="button" disabled class="btn btn-info" style="background-color:teal; border:none; color:white;" >Edit</button>
-      <!-- Button trigger modal -->
-      <button type="button" disabled class="btn btn-danger" style="background-color:tomato; border:none; color:white;" >Delete</button>
+    <button type="button" disabled class="btn btn-info" style="background-color:teal; border:none; color:white;" >Edit</button>
+    <button type="button" disabled class="btn btn-danger" style="background-color:tomato; border:none; color:white;" >Delete</button>
     <br><br>
-
     {% endif %}
   {% endfor %}
 
-{% else %}
-    <h4 style=color:crimson> To edit or delete an article, <br></br> 
-        please, <a style=color:coral href="{% url 'articles:login_this_user' %}"> log in </a> ! </h4>
-{% endif %}
 {% endblock %}
 
 
 {% block auth %}
-<a href= "{% url 'articles:sign_up_user' %}" style="float: right;" class="btn btn-info">Sign up</a>
 {% if user.is_authenticated %}
 <a href="{% url 'articles:logout_this_user' %}" style="float: right;" class="btn btn-info">Log out</a> 
 {% else %}
+<a href= "{% url 'articles:sign_up_user' %}" style="float: right;" class="btn btn-info">Sign up</a>
 <a href="{% url 'articles:login_this_user' %}" style="float: right;" class="btn btn-info">Log in</a> 
 {% endif %}  
 {% endblock %}

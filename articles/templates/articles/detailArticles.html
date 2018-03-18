@@ -3,15 +3,22 @@
 
 
 {% block page_style %}
-<link rel="stylesheet" href="{% static 'css/styledetail.css' %}">
+<link rel="stylesheet" href="{% static 'articles/css/styledetail.css' %}">
 {% endblock %}
 
+{% block content %}
+
+<h2 style=color:green>{{ articles.title }}</h2>
+<h5 style=color:coral><span class="glyphicon glyphicon-time"></span> Post by {{ articles.author }}, {{ articles.created_at }}</h5>
+<p>{{ articles.description }}</p>
+
+{% endblock content %}
 
 {% block auth %}
-<a href= "{% url 'articles:sign_up_user' %}" style="float: right;" class="btn btn-info">Sign up</a>
 {% if user.is_authenticated %}
 <a href="{% url 'articles:logout_this_user' %}" style="float: right;" class="btn btn-info">Log out</a> 
 {% else %}
+<a href= "{% url 'articles:sign_up_user' %}" style="float: right;" class="btn btn-info">Sign up</a>
 <a href="{% url 'articles:login_this_user' %}" style="float: right;" class="btn btn-info">Log in</a> 
 {% endif %}  
 {% endblock %}

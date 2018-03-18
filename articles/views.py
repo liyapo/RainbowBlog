@@ -103,7 +103,7 @@ def sign_up(request):
 def login_user(request):
 
     form = UserLoginForm()
-    exsist = True
+    exsist = True   
     # If the request is a HTTP POST, get the info
     if request.method == 'POST': 
         # Gather the username, password
@@ -113,17 +113,16 @@ def login_user(request):
         user = authenticate(username=username, password=password)
         # If we have user object, we log him in
         # If none then we return the mistake
-        if user:  
+        if user:
             exsist = True
             login(request, user)
-            return render(request, 'rainbow/home.html')  
+            return render(request, 'rainbow/home.html')
         else: 
             exsist = False
             return render(request, 'articles/login.html', {'form': form, 'exsist':exsist})
     # The request is not HTTP POST
     else:
         return render(request, 'articles/login.html', {'form': form, 'exsist':exsist})
-
 
 def logout_user(request):
     logout(request)
