@@ -15,23 +15,25 @@ class ArticlesUserForm(forms.ModelForm):
         fields = ('title', 'description')
 
 class UserSignUpForm(forms.ModelForm):
-    
+
+	password = forms.CharField(widget=forms.PasswordInput)
+
 	class Meta:
 		model = User
-		fields = ('username', 'password', 'email')
-        #password = forms.CharField(widget = forms.PasswordInput())
+		fields = ('username','password', 'email')
 
 		help_texts = {
             'username': None,
-        }
-
+            }
 
 class UserLoginForm(forms.ModelForm):
+
+	password = forms.CharField(widget=forms.PasswordInput)
+
 	class Meta:
 		model = User
-		fields = ('username', 'password')
-        #password = forms.CharField(widget = forms.PasswordInput())
+		fields = ('username','password')
 
 		help_texts = {
             'username': None,
-        }
+            }
