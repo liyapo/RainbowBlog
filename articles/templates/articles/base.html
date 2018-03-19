@@ -3,52 +3,59 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head>
-  <style type="text/css">body, a:hover {cursor: url(http://cur.cursors-4u.net/nature/nat-10/nat922.ani), url(https://userstyles.org/style_screenshots/78316_after.png?r=1478952354), progress !important;}</style><a href="http://www.cursors-4u.com/cursor/2011/04/19/cute-blinking-unicorn.html" target="_blank" title="Cute Blinking Unicorn"><img src="http://cur.cursors-4u.net/cursor.png" border="0" alt="Cute Blinking Unicorn" style="position:absolute; top: 0px; right: 0px;" /></a>
-  <title>{% block page_title %} Rainbow Blog {% endblock %}</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-  {% block page_style %}<link rel="stylesheet" href="{% static 'articles/css/style.css' %}">{% endblock %}
-</head>
+  <head>
+   <style type="text/css">body, a:hover {cursor: url(http://cur.cursors-4u.net/nature/nat-10/nat922.ani), url(https://userstyles.org/style_screenshots/78316_after.png?r=1478952354), progress !important;}</style><a href="http://www.cursors-4u.com/cursor/2011/04/19/cute-blinking-unicorn.html" target="_blank" title="Cute Blinking Unicorn"><img src="http://cur.cursors-4u.net/cursor.png" border="0" alt="Cute Blinking Unicorn" style="position:absolute; top: 0px; right: 0px;" /></a>
+   <title>
+     {% block page_title %} 
+       Rainbow Blog 
+     {% endblock page_title %}
+   </title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    {% block page_style %}
+     <link rel="stylesheet" href="{% static 'articles/css/style.css' %}">
+    {% endblock page_style %}
+  </head>
 
+  <!-- Header of the page with a link to the home page of the blog -->
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12" style="height:80px; color:rgb(252, 242, 151); margin:10px; background-color:springgreen">
+          <a href="\" style="text-decoration:none; background-color:tomato; color:white;"> <h2> Rainbow Blog  -  Welcome to heaven </h2> </a>
+        </div>  
+      </div>
 
-<body>
-<div class="container-fluid">
-  <div class="row">
-      <div class="col-sm-12" style="height:80px; color:rgb(252, 242, 151); margin:10px; background-color:springgreen">
-        <a href="\" style="text-decoration:none; background-color:tomato; color:white;"> <h2> Rainbow Blog  -  Welcome to heaven </h2> </a>
-      </div>  
-  </div>
-
-
-<div>
-  {% block auth %}
-  {% endblock %}
-</div>
-</div>
-
-  
-  <div class="row content">
-    <div class="col-sm-3 sidenav">
-      {% block menu %}
-      {% endblock %}
-      
+      <!-- Login, Logout, SignUp buttons appearance depending on the authentication -->
+      <div>
+        {% block auth %}
+        {% if user.is_authenticated %}
+        <a href="{% url 'articles:logout_this_user' %}" style="float: right;" class="btn btn-info">Log out</a> 
+        {% else %}
+        <a href= "{% url 'articles:sign_up_user' %}" style="float: right;" class="btn btn-info">Sign up</a>
+        <a href="{% url 'articles:login_this_user' %}" style="float: right;" class="btn btn-info">Log in</a> 
+        {% endif %}  
+        {% endblock auth %}
+      </div>
     </div>
 
-    <div class="col-sm-7">
-      {% block content %}
+    <!-- Menu appearance depending on the user actions and main content -->  
+    <div class="row content">
+      <div class="col-sm-3 sidenav">
+        {% block menu %}
+        {% endblock menu %}  
+      </div>
+
+      <div class="col-sm-7">
+        {% block content %}
        
-     <h2> base page </h2> 
+          <h2> BASE PAGE </h2> 
 
-      {% endblock %}
+        {% endblock content %}
+      </div>
     </div>
-  </div>
-</div>
-
-
-
-</body>
+  </body>
 </html>
